@@ -1,4 +1,5 @@
 {
+    "host": "localhost",
     "database_name": "globant",
     "url": "jdbc:mysql://localhost:3306/globant",
     "driver": "com.mysql.jdbc.Driver",
