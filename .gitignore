@@ -1,0 +1,3 @@
+test_data/temp/*.csv
+__pycache__
+.pytest_cache
