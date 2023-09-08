@@ -154,8 +154,11 @@ def check_and_upload_historic_tables(spark, file_name, request_files):
         return jsonify({"error": "No file part"}), 400
 
     file = request_files[file_name]
-    if file.filename == '':
-        return jsonify({"error": "No selected file"}), 400
+    try:
+        if file.filename == '':
+            return jsonify({"error": "No selected file"}), 400
+    except:
+        return jsonify({"error": "No valid request file"}), 400
 
     if file:
         file_path = root_dir + "\\test_data\\temp\\" + file.filename

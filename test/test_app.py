@@ -7,6 +7,8 @@ sys.path.insert(1, project_dir)
 
 from jobs.app import app
 
+BATCH_CONNECTION_VALUES = 500
+
 @pytest.fixture
 def client():
     with app.test_client() as client:
@@ -25,15 +27,15 @@ def test_upload_csv(client):
 
 def test_insert_hired_employees(client):
     response = client.post('/insert-hired_employees', data=b'[[1, "Test", "20230101", 1, 1]]', content_type='multipart/raw')
-    assert response.status_code == 200
+    assert response.status_code == BATCH_CONNECTION_VALUES
     
 def test_insert_departments(client):
     response = client.post('/insert-departments', data=b'[[1, "Test"]]', content_type='multipart/raw')
-    assert response.status_code == 200
+    assert response.status_code == BATCH_CONNECTION_VALUES
 
 def test_insert_jobs(client):
     response = client.post('/insert-jobs', data=b'[[1, "Test"]]', content_type='multipart/raw')
-    assert response.status_code == 200
+    assert response.status_code == BATCH_CONNECTION_VALUES
 
 def test_get_number_quarter(client):
     response = client.get('/get-number_quarter')
